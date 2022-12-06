@@ -23,29 +23,36 @@ public class SubwayPathController {
                 if (backToMainDisplay(secondDisplayUserInput)) continue;
             }
 
-            continueFlag = quit(continueFlag, mainDisplayUserInput);
+            continueFlag = isQuit(continueFlag, mainDisplayUserInput);
         }
     }
 
-    private boolean quit(boolean continueFlag, String mainDisplayUserInput) {
-        if (mainDisplayUserInput.equals("Q")) {
-            continueFlag = false;
+    private void calculateShortestDistance(String secondDisplayUserInput) {
+        if (secondDisplayUserInput.equals("1")) { // 최단거리
+            List<String> shortestPathStations = getShortestDistanceStation();
+
+            OutputView.showInfo(shortestPathStations);
         }
-        return continueFlag;
     }
 
-    private boolean backToMainDisplay(String secondDisplayUserInput) {
-        if (secondDisplayUserInput.equals("B")) {
-            return true;
+    private List<String> getShortestDistanceStation() {
+        try {
+            String userInputOfDeparture = InputView.showDepartureEnteringUIAndGetInput();
+            String userInputOfArrival = InputView.showArrivalEnteringUIAndGetInput();
+
+            DijkstraShortestDistancePath dijkstraShortestDistancePath = new DijkstraShortestDistancePath();
+            return dijkstraShortestDistancePath.getShortestPath(userInputOfDeparture, userInputOfArrival);
+        } catch (IllegalArgumentException e) {
+            System.out.println("올바른 역 명을 입력해주세요.");
+            return getShortestDistanceStation();
         }
-        return false;
     }
 
     private void calculateShortestTime(String secondDisplayUserInput) {
         if (secondDisplayUserInput.equals("2")) { // 최소시간
-            List<String> shortestPath = getShortestTimeStation();
+            List<String> shortestPathStations = getShortestTimeStation();
 
-            OutputView.showInfo(shortestPath);
+            OutputView.showInfo(shortestPathStations);
         }
     }
 
@@ -62,24 +69,17 @@ public class SubwayPathController {
         }
     }
 
-    private void calculateShortestDistance(String secondDisplayUserInput) {
-        if (secondDisplayUserInput.equals("1")) { // 최단거리
-            List<String> shortestPath = getShortestDistanceStation();
-
-            OutputView.showInfo(shortestPath);
+    private boolean backToMainDisplay(String secondDisplayUserInput) {
+        if (secondDisplayUserInput.equals("B")) {
+            return true;
         }
+        return false;
     }
 
-    private List<String> getShortestDistanceStation() {
-        try {
-            String userInputOfDeparture = InputView.showDepartureEnteringUIAndGetInput();
-            String userInputOfArrival = InputView.showArrivalEnteringUIAndGetInput();
-
-            DijkstraShortestDistancePath dijkstraShortestDistancePath = new DijkstraShortestDistancePath();
-            return dijkstraShortestDistancePath.getShortestPath(userInputOfDeparture, userInputOfArrival);
-        } catch (IllegalArgumentException e) {
-            System.out.println("올바른 역 명을 입력해주세요.");
-            return getShortestDistanceStation();
+    private boolean isQuit(boolean continueFlag, String mainDisplayUserInput) {
+        if (mainDisplayUserInput.equals("Q")) {
+            continueFlag = false;
         }
+        return continueFlag;
     }
 }
