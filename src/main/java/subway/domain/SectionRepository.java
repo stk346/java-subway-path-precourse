@@ -22,4 +22,13 @@ public class SectionRepository {
         addSection(new Section("강남역", "양재역", 2, 8));
         addSection(new Section("양재역", "양재시민의숲역", 10, 3));
     }
+
+    public static Section getSection(String departureStation, String arrivalStation) {
+        for (Section section : sections()) {
+            if (section.ifSame(departureStation, arrivalStation)) {
+                return section;
+            }
+        }
+        throw new IllegalArgumentException("올바른 역 이름을 입력해주세요.");
+    }
 }

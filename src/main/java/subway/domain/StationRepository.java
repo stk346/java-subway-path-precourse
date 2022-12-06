@@ -31,6 +31,6 @@ public class StationRepository {
         addStation(new Station("남부터미널역"));
         addStation(new Station("양재역"));
         addStation(new Station("양재시민의숲역"));
-        addStation(new Station("애봉역"));
+        addStation(new Station("매봉역"));
     }
 }

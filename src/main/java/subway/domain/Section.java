@@ -13,6 +13,29 @@ public class Section {
         this.requiredTime = requiredTime;
     }
 
+    public String getDepartureStation() {
+        return departureStation;
+    }
+
+    public int getKilometer() {
+        return kilometer;
+    }
+
+    public int getRequiredTime() {
+        return requiredTime;
+    }
+
+    public String getArrivalStation() {
+        return arrivalStation;
+    }
+
+    public boolean ifSame(String departureStation, String arrivalStation) throws IllegalArgumentException {
+        if (this.departureStation.equals(departureStation) && this.arrivalStation.equals(arrivalStation)) {
+            return true;
+        }
+        throw new IllegalArgumentException("올바른 역 이름을 입력해주세요.");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
