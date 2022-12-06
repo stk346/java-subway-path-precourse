@@ -251,3 +251,14 @@ public void getDijkstraShortestPath() {
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/java-subway-path-precourse/blob/master/LICENSE.md) licensed.
+
+----
+
+## 기능 구현 목록
+
+- 구간 (section)
+  * 출발 - 목적지 (키로 수 / 소요시간) 만들기
+
+- 최단 거리
+
+- 최소 시간
