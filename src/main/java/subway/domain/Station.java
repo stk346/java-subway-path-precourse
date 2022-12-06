@@ -12,4 +12,22 @@ public class Station {
     }
 
     // 추가 기능 구현
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Station station = (Station) o;
+
+        if (!getName().equals(station.getName())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return getName().hashCode();
+    }
 }
